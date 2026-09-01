@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>gone fishing</title>
+		<meta name="description" content="some bozo tried fishing me">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Crashed Out">
+		
+		<style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}
+/* This is an arbitrary CSS string added to the bundle */
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--background-color: #15202b;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 40em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img{
+  max-width: 100%;
+}
+img[width][height] {
+  height: auto;
+}
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: .5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}</style>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/" class="home-link">Crashed Out</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/">Home</a></li>
+					<li class="nav-item"><a href="/blog/">Archive</a></li>
+					<li class="nav-item"><a href="/about/">About</a></li>
+					<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<heading-anchors>
+				
+<h1 id="gone-fishing">gone fishing</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2026-02-10">10 February 2026</time></li>
+	<li><a href="/tags/phishing/" class="post-tag">phishing</a>, </li>
+	<li><a href="/tags/investigation/" class="post-tag">investigation</a>, </li>
+	<li><a href="/tags/openai/" class="post-tag">openai</a></li>
+</ul>
+
+<blockquote>
+<p>Disclaimer:
+This seems to be an ongoing scam. I reported many of these urls already, however I do not advise visiting any of them. At any time an attacker controlled domain could be switched to malware, shock content, etc. I felt the responsible thing to do was to include them in screenshots, to bring awareness to where and what to avoid. PII has been removed to protect potential victims. Educate yourself!!! Don't fall for scams!!!</p>
+</blockquote>
+<p>...</p>
+<p><strong>I check my email !!!</strong></p>
+<p>And when you put your email on a blog you get a lot of interesting spam.</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/e58EVHsVK8-400.avif 400w, /blog/2_10_26/post/e58EVHsVK8-800.avif 800w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/e58EVHsVK8-400.webp 400w, /blog/2_10_26/post/e58EVHsVK8-800.webp 800w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/e58EVHsVK8-400.png" alt="place holder" width="800" height="46" srcset="/blog/2_10_26/post/e58EVHsVK8-400.png 400w, /blog/2_10_26/post/e58EVHsVK8-800.png 800w" sizes="auto"></picture></p>
+<p>This seems to be a popular grift right now, so it piqued my interest.</p>
+<p>Or at least I would assume it is, because they felt the need to email me multiple times.</p>
+<p>Very obviously not from openAI spam email (also, I don't use their services):</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/6comys6S3--400.avif 400w, /blog/2_10_26/post/6comys6S3--800.avif 800w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/6comys6S3--400.webp 400w, /blog/2_10_26/post/6comys6S3--800.webp 800w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/6comys6S3--400.png" alt="place holder" width="800" height="773" srcset="/blog/2_10_26/post/6comys6S3--400.png 400w, /blog/2_10_26/post/6comys6S3--800.png 800w" sizes="auto"></picture></p>
+<p>This email looks very... professional, with the only clear give away being the email address.</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/F6gjk9vcls-400.avif 400w, /blog/2_10_26/post/F6gjk9vcls-800.avif 800w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/F6gjk9vcls-400.webp 400w, /blog/2_10_26/post/F6gjk9vcls-800.webp 800w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/F6gjk9vcls-400.png" alt="place holder" width="800" height="766" srcset="/blog/2_10_26/post/F6gjk9vcls-400.png 400w, /blog/2_10_26/post/F6gjk9vcls-800.png 800w" sizes="auto"></picture></p>
+<p>Likely this is a compromised university account.</p>
+<p>I received multiple emails just like this, from different over seas universities.</p>
+<p>I can't really speak to the legitimacy of these unis, however all of them appear to be in Malaysia.</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/Isrj97kEkx-400.avif 400w, /blog/2_10_26/post/Isrj97kEkx-800.avif 800w, /blog/2_10_26/post/Isrj97kEkx-1195.avif 1195w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/Isrj97kEkx-400.webp 400w, /blog/2_10_26/post/Isrj97kEkx-800.webp 800w, /blog/2_10_26/post/Isrj97kEkx-1195.webp 1195w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/Isrj97kEkx-400.png" alt="place holder" width="1195" height="413" srcset="/blog/2_10_26/post/Isrj97kEkx-400.png 400w, /blog/2_10_26/post/Isrj97kEkx-800.png 800w, /blog/2_10_26/post/Isrj97kEkx-1195.png 1195w" sizes="auto"></picture></p>
+<p>Taking a step back, we can directly look at the html of the email.</p>
+<p>That big green &quot;Update Payment Information&quot; is actually a link to not-openAI.</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/mNFU_H2oVi-400.avif 400w, /blog/2_10_26/post/mNFU_H2oVi-800.avif 800w, /blog/2_10_26/post/mNFU_H2oVi-1200.avif 1200w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/mNFU_H2oVi-400.webp 400w, /blog/2_10_26/post/mNFU_H2oVi-800.webp 800w, /blog/2_10_26/post/mNFU_H2oVi-1200.webp 1200w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/mNFU_H2oVi-400.png" alt="place holder" width="1200" height="1097" srcset="/blog/2_10_26/post/mNFU_H2oVi-400.png 400w, /blog/2_10_26/post/mNFU_H2oVi-800.png 800w, /blog/2_10_26/post/mNFU_H2oVi-1200.png 1200w" sizes="auto"></picture></p>
+<p>As of writing, this website is now down.</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/tnm8USP2XY-400.avif 400w, /blog/2_10_26/post/tnm8USP2XY-800.avif 800w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/tnm8USP2XY-400.webp 400w, /blog/2_10_26/post/tnm8USP2XY-800.webp 800w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/tnm8USP2XY-400.png" alt="place holder" width="800" height="514" srcset="/blog/2_10_26/post/tnm8USP2XY-400.png 400w, /blog/2_10_26/post/tnm8USP2XY-800.png 800w" sizes="auto"></picture></p>
+<p>If we proxy our https traffic we can analyze what's going on:</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/xeoBzMY1bH-400.avif 400w, /blog/2_10_26/post/xeoBzMY1bH-800.avif 800w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/xeoBzMY1bH-400.webp 400w, /blog/2_10_26/post/xeoBzMY1bH-800.webp 800w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/xeoBzMY1bH-400.png" alt="place holder" width="800" height="351" srcset="/blog/2_10_26/post/xeoBzMY1bH-400.png 400w, /blog/2_10_26/post/xeoBzMY1bH-800.png 800w" sizes="auto"></picture></p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/tHcXSX04C2-400.avif 400w, /blog/2_10_26/post/tHcXSX04C2-800.avif 800w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/tHcXSX04C2-400.webp 400w, /blog/2_10_26/post/tHcXSX04C2-800.webp 800w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/tHcXSX04C2-400.png" alt="place holder" width="800" height="308" srcset="/blog/2_10_26/post/tHcXSX04C2-400.png 400w, /blog/2_10_26/post/tHcXSX04C2-800.png 800w" sizes="auto"></picture></p>
+<p>Sending a <code>GET /gpt/</code> to this host (pressing the button) causes the server to issue a 301 redirect to another host.</p>
+<p>You're redirected so fast, that you don't see this initial website.</p>
+<p>It's hard to tell how, but this first website has been compromised in some way.</p>
+<p>The domain we're redirected to appears to be region locked to North America, and cannot be visited via vpn. (Power of the us dollar I guess.)</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/j1zU8na9Y4-400.avif 400w, /blog/2_10_26/post/j1zU8na9Y4-800.avif 800w, /blog/2_10_26/post/j1zU8na9Y4-1100.avif 1100w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/j1zU8na9Y4-400.webp 400w, /blog/2_10_26/post/j1zU8na9Y4-800.webp 800w, /blog/2_10_26/post/j1zU8na9Y4-1100.webp 1100w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/j1zU8na9Y4-400.png" alt="place holder" width="1100" height="897" srcset="/blog/2_10_26/post/j1zU8na9Y4-400.png 400w, /blog/2_10_26/post/j1zU8na9Y4-800.png 800w, /blog/2_10_26/post/j1zU8na9Y4-1100.png 1100w" sizes="auto"></picture></p>
+<p>We get bounced around likely as a poor attempt to cover their butts.</p>
+<p>This is what the phishing site looks like:</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/pYnrtt5Ulh-400.avif 400w, /blog/2_10_26/post/pYnrtt5Ulh-800.avif 800w, /blog/2_10_26/post/pYnrtt5Ulh-1200.avif 1200w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/pYnrtt5Ulh-400.webp 400w, /blog/2_10_26/post/pYnrtt5Ulh-800.webp 800w, /blog/2_10_26/post/pYnrtt5Ulh-1200.webp 1200w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/pYnrtt5Ulh-400.png" alt="place holder" width="1200" height="755" srcset="/blog/2_10_26/post/pYnrtt5Ulh-400.png 400w, /blog/2_10_26/post/pYnrtt5Ulh-800.png 800w, /blog/2_10_26/post/pYnrtt5Ulh-1200.png 1200w" sizes="auto"></picture></p>
+<p>The audacity to hit me with a recaptcha on a phishing website.</p>
+<p>Some times these captcha's themselves are the scam. This one however, seems to be normal.</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/OlHqYcVvHE-400.avif 400w, /blog/2_10_26/post/OlHqYcVvHE-800.avif 800w, /blog/2_10_26/post/OlHqYcVvHE-1200.avif 1200w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/OlHqYcVvHE-400.webp 400w, /blog/2_10_26/post/OlHqYcVvHE-800.webp 800w, /blog/2_10_26/post/OlHqYcVvHE-1200.webp 1200w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/OlHqYcVvHE-400.png" alt="place holder" width="1200" height="826" srcset="/blog/2_10_26/post/OlHqYcVvHE-400.png 400w, /blog/2_10_26/post/OlHqYcVvHE-800.png 800w, /blog/2_10_26/post/OlHqYcVvHE-1200.png 1200w" sizes="auto"></picture></p>
+<p>Again, a very professional looking scam. However very obviously not from openAI (always carefully check that url).</p>
+<p>With AI tools becoming more accessible, it's very trivial for a non-english speaker to clone or create a convincing page. It is very likely this has fooled at least 1 person.</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/AUgp2r4eJx-400.avif 400w, /blog/2_10_26/post/AUgp2r4eJx-800.avif 800w, /blog/2_10_26/post/AUgp2r4eJx-1200.avif 1200w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/AUgp2r4eJx-400.webp 400w, /blog/2_10_26/post/AUgp2r4eJx-800.webp 800w, /blog/2_10_26/post/AUgp2r4eJx-1200.webp 1200w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/AUgp2r4eJx-400.png" alt="place holder" width="1200" height="823" srcset="/blog/2_10_26/post/AUgp2r4eJx-400.png 400w, /blog/2_10_26/post/AUgp2r4eJx-800.png 800w, /blog/2_10_26/post/AUgp2r4eJx-1200.png 1200w" sizes="auto"></picture></p>
+<p>Stripe?? Oh that's someone's full legal name. Better clip that out.</p>
+<p>It's very likely this stripe account was created using a stollen identity. Or this scam is ran by someone with a room temperature IQ.</p>
+<p>So who owns this scam site?</p>
+<p><picture><source type="image/avif" srcset="/blog/2_10_26/post/sWVWbn-C-T-400.avif 400w, /blog/2_10_26/post/sWVWbn-C-T-692.avif 692w" sizes="auto"><source type="image/webp" srcset="/blog/2_10_26/post/sWVWbn-C-T-400.webp 400w, /blog/2_10_26/post/sWVWbn-C-T-692.webp 692w" sizes="auto"><img loading="lazy" decoding="async" src="/blog/2_10_26/post/sWVWbn-C-T-400.png" alt="place holder" width="692" height="432" srcset="/blog/2_10_26/post/sWVWbn-C-T-400.png 400w, /blog/2_10_26/post/sWVWbn-C-T-692.png 692w" sizes="auto"></picture></p>
+<p>Well, at least they had the sense to spend the extra 10$ for whois protection.</p>
+<p>Reported, blocked, etc</p>
+<hr>
+<p>If there's something you would like me to investigate, please <a href="mailto:blog.repulsion712@passinbox.com">email me</a> or comment below.</p>
+<p>I love doing independent research, and I'm always willing to take on a challenge or look into something weird.</p>
+<p>Thanks!</p>
+
+<ul class="links-nextprev"><li class="links-nextprev-prev">← Previous<br> <a href="/blog/1_29_26/post/">riscv obfuscated lock (micro-ctf)</a></li><li class="links-nextprev-next">Next →<br><a href="/blog/2_24_26/post/">you think this is a game?</a></li>
+</ul>
+
+<script src="https://giscus.app/client.js" data-repo="0x7575/crashed-out" data-repo-id="R_kgDOOXrmsA" data-category="Blog Posts" data-category-id="DIC_kwDOOXrmsM4C0g0m" data-mapping="title" data-strict="1" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async="">
+</script>
+
+			</heading-anchors>
+		</main>
+		<!-- This page `/blog/2_10_26/post/` was built on 2026-09-01T04:49:01.540Z -->
+		<script type="module" src="/dist/cC8wS6ZjFU.js"></script>
+	</body>
+</html>
